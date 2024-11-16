@@ -7,6 +7,7 @@ This project is a test automation framework built using Selenium, Pytest, and th
 - [Installation](#installation)
 - [Project Structure](#project-structure)
 - [Usage](#usage)
+- [License](#license)
 
 ## Installation
 
