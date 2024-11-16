@@ -10,7 +10,7 @@ class DriverFactory:
         options.add_argument("--start-maximized")
         options.add_argument("--disable-infobars")
         options.add_argument("--disable-extensions")
-        # options.add_argument("--headless")  # Уберите эту строку, если хотите видеть выполнение тестов
+        # options.add_argument("--headless")
 
         driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
         return driver

@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import Select
 
 
 class BasePage:
@@ -44,3 +45,30 @@ class BasePage:
             return True
         except:
             return False
+
+    def is_element_presented(self, locator):
+        try:
+            element = WebDriverWait(self.browser, self.timeout).until(
+                EC.presence_of_element_located(locator)
+            )
+            return True
+        except:
+            return False
+
+    def script_click_element(self, locator):
+        element = self.find_element(locator)
+        self.execute_script("arguments[0].click();", element)
+
+    def script_scroll_to_element(self, locator):
+        element = self.find_element(locator)
+        self.execute_script("arguments[0].scrollIntoView(true);", element)
+
+    def execute_script(self, param, element):
+        pass
+
+    def select_and_set_dropdown(self, locator, text):
+        select = Select(self.find_element(locator))
+        options = select.options
+        for option in options:
+            if option.text == text:
+                option.click()

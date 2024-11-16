@@ -5,7 +5,6 @@ from pages.product_page import ProductPage
 from selenium.webdriver.support.ui import Select
 
 
-
 class CategoryPage(BasePage):
     CATEGORY_URL = "https://catalog.onliner.by/mobile"
     # PHONE_LOCATOR = (By.CSS_SELECTOR, ".phone-item")
@@ -29,7 +28,7 @@ class CategoryPage(BasePage):
     max_price_field = (By.XPATH,
                        '//*[@id="container"]/div/div/div/div/div[2]/div[1]/div/div/div[4]/div/div/div/div/div[2]/div[2]/div[12]/div/div/div[2]/div[2]/div/div[2]/input')
     min_screen_size = (By.XPATH, '//*[@id="container"]/div/div/div/div/div[2]/div[1]/div/div/div[4]/div/div/div/div/div[2]/div[2]/div[20]/div/div[2]/div[2]/div[2]/div/div[1]/div/select')
-    mmmmm = (By.XPATH, '//*[@id="container"]/div/div/div/div/div[2]/div[1]/div/div/div[4]/div/div/div/div/div[2]/div[2]/div[20]/div/div[2]/div[2]/div[2]/div/div[1]/div/select/option')
+
     max_screen_size = (By.XPATH,
                        '//*[@id="container"]/div/div/div/div/div[2]/div[1]/div/div/div[4]/div/div/div/div/div[2]/div[2]/div[20]/div/div[2]/div[2]/div[2]/div/div[2]/div/select')
 
@@ -74,9 +73,16 @@ class CategoryPage(BasePage):
         self.enter_text(self.min_price_field, min(phone_prices))
         time.sleep(5)
         self.enter_text(self.max_price_field, max(phone_prices))
-        time.sleep(5)
+        time.sleep(2)
 
-        # dropdown menu
+        # dropdown menu - PROBLEM!!!!
+        # if self.is_element_presented(self.min_screen_size):
+        #     self.script_scroll_to_element(self.min_screen_size)
+        # self.select_and_set_dropdown(self.min_screen_size, 'qwerty')
+        # self.is_element_clickable(self.min_screen_size)
+        # self.click_element(self.min_screen_size)
+        # time.sleep(5)
+        # self.click_element(self.max_screen_size)
 
         #min_dropdown_element = self.find_element(self.min_screen_size)
         #min_dropdown_element.click()
@@ -87,16 +93,17 @@ class CategoryPage(BasePage):
         #select.select_by_value(str(min(phone_screen_size)))
         #time.sleep(5)
 
-
-    def are_phones_still_displayed(self, phones):
+    def are_phones_still_displayed(self):
         # Check if selected phones are still visible on the page after setting filters
-        return all(
-            self.is_element_visible((By.XPATH, f"//div[@data-id='{phone.get_attribute('data-id')}']")) for phone in
-            phones)
+        phone_1 = self.is_element_visible(self.PHONE_1_LOCATOR)
+        phone_2 = self.is_element_visible(self.PHONE_2_LOCATOR)
+        phones = [phone_1, phone_2]
+        return [True, False][False in phones]
 
-    def go_to_phone(self, phone):
-        phone.click()
-        return ProductPage(self.browser)
+    # def go_to_phone_1(self):
+    #     self.click_element(self.PHONE_1_LOCATOR)
+    #     time.sleep(10)
+    # #     # return ProductPage(self.browser)
 
     def click_compare_link(self):
         self.click_element(self.COMPARE_BUTTON_LOCATOR)

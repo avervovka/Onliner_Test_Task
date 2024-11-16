@@ -29,12 +29,11 @@ def test_mobile_comparsion(browser):
 
     # Step 3: Set search parameters: price, screen size
     category_page.set_search_parameters([first_phone, second_phone])
+    assert category_page.are_phones_still_displayed(), "Selected phones are not displayed after setting search parameters"
+    assert category_page.are_phones_checked(), "Phones are not properly checked after setting search parameters"
 
-    #assert category_page.are_phones_still_displayed([first_phone, second_phone]), "Selected phones are not displayed after setting search parameters"
-    #assert category_page.are_phones_checked([first_phone, second_phone]), "Phones are not properly checked after setting search parameters"
-
-    ## Step 4: Go to any of the selected phones
-    #product_page = category_page.go_to_phone(first_phone)
+    # Step 4: Go to any of the selected phones
+    # product_page = category_page.go_to_phone_1()
     #assert product_page.verify_phone_parameters(first_phone), "Phone parameters do not match"
 #
     ## Step 5: Click 'Compare' link
