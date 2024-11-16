@@ -35,3 +35,12 @@ class BasePage:
             return True
         except:
             return False
+
+    def is_element_clickable(self, locator):
+        try:
+            element = WebDriverWait(self.browser, self.timeout).until(
+                EC.element_to_be_clickable(locator)
+            )
+            return True
+        except:
+            return False

@@ -41,14 +41,15 @@ class CategoryPage(BasePage):
 
     def find_and_click_cookies_message(self):
         time.sleep(2)
-        self.find_element(self.ACCEPT_COOKIES_BUTTON_LOCATOR).click()
+        self.click_element(self.ACCEPT_COOKIES_BUTTON_LOCATOR)
         time.sleep(2)
 
     def add_two_phones_to_compare(self):
         self.first_phone_checkbox = self.find_element(self.CHECKBOX_1_LOCATOR)
-        self.first_phone_checkbox.click()
         self.second_phone_checkbox = self.find_element(self.CHECKBOX_2_LOCATOR)
-        self.second_phone_checkbox.click()
+        self.click_element(self.CHECKBOX_1_LOCATOR)
+        time.sleep(2)
+        self.click_element(self.CHECKBOX_2_LOCATOR)
         first_phone = self.find_element(self.PHONE_1_LOCATOR)
         second_phone = self.find_element(self.PHONE_2_LOCATOR)
         return first_phone, second_phone
@@ -70,12 +71,9 @@ class CategoryPage(BasePage):
             by, value = self.screen_size
             phone_screen_size.append(int(phone.find_element(by, value).text.replace('.', '')[6:9]))
 
-        min_input_field = self.find_element(self.min_price_field)
-        min_input_field.send_keys(min(phone_prices))
+        self.enter_text(self.min_price_field, min(phone_prices))
         time.sleep(5)
-
-        max_input_field = self.find_element(self.max_price_field)
-        max_input_field.send_keys(max(phone_prices))
+        self.enter_text(self.max_price_field, max(phone_prices))
         time.sleep(5)
 
         # dropdown menu
