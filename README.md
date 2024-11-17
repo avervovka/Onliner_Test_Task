@@ -32,7 +32,7 @@ The project is organized as follows:
 Onliner_Test_Task/
 │
 ├── pages/
-│   ├── Base_Page.py            # Base class for page objects
+│   ├── base_Page.py            # Base class for page objects
 │   ├── category_page.py        # Page object for category page
 │   └── compare_page.py         # Page object for comparison page
 │

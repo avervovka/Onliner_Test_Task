@@ -78,20 +78,7 @@ class CategoryPage(BasePage):
         # dropdown menu - PROBLEM!!!!
         # if self.is_element_presented(self.min_screen_size):
         #     self.script_scroll_to_element(self.min_screen_size)
-        # self.select_and_set_dropdown(self.min_screen_size, 'qwerty')
-        # self.is_element_clickable(self.min_screen_size)
-        # self.click_element(self.min_screen_size)
-        # time.sleep(5)
-        # self.click_element(self.max_screen_size)
-
-        #min_dropdown_element = self.find_element(self.min_screen_size)
-        #min_dropdown_element.click()
-        #min_dropdown_elements = self.find_elements(self.min_screen_size)
-        #print(min_dropdown_elements)
-#
-        #select = Select(min_dropdown_elements)
-        #select.select_by_value(str(min(phone_screen_size)))
-        #time.sleep(5)
+        # self.select_and_set_dropdown(self.min_screen_size, '6.67"')
 
     def are_phones_still_displayed(self):
         # Check if selected phones are still visible on the page after setting filters
@@ -105,7 +92,7 @@ class CategoryPage(BasePage):
     #     time.sleep(10)
     # #     # return ProductPage(self.browser)
 
-    def click_compare_link(self):
-        self.click_element(self.COMPARE_BUTTON_LOCATOR)
-        from pages.compare_page import ComparePage
-        return ComparePage(self.browser)
+    # def click_compare_link(self):
+    #     self.click_element(self.COMPARE_BUTTON_LOCATOR)
+    #     from pages.compare_page import ComparePage
+    #     return ComparePage(self.browser)
